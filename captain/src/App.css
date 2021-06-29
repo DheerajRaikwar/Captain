@@ -153,11 +153,22 @@ input[type=text]{
   border-radius: 4px;
   cursor: pointer;
 }
+.done{
+  margin:3px 0;
+  width:20%;
+  padding:2px;
+}
 
 .taskList{  
   font-size: 15px;
-  text-align: justify;
+  text-align: left;
   font-weight: bold;
   padding-right: 10px;
   
+}
+
+.taskid{
+  
+  margin: 0.2rem;
+
 }
