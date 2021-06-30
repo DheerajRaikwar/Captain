@@ -2,9 +2,7 @@ import React from 'react';
 
 const ListItem = (props) => {
 
-    const doneItem = () => {
-
-    }
+    
     return (
         <> 
             <div> 
