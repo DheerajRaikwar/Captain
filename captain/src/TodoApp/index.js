@@ -4,24 +4,43 @@ import ListItem from '../Componants/comp/ListItem';
 const TodoApp = () => {
     const [inputList, setInputList] = useState("");
     const [items, setItems] = useState([]);
+    let [dtask, doneTask] = useState([]);
 
     const showEvent = (event) => {
         setInputList(event.target.value);
     };
     const onAddTask = () => {
+
         setItems((ptask) => {
             return [...ptask, inputList];
         });
+        document.getElementById('inputTask').value="";
+        
 
     };
 
-    const doneItem =(id) =>{
-        console.log("item deleted");
-        setItems((ptask)=>{
-            return ptask.filter((arrE,index)=>{
-                return index!==id;
+    const handleKey = e => {
+        if (e.key === "Enter") {
+            onAddTask();            
+        }
+        
+
+    };
+
+    const doneItem = (id) => {
+        console.log("item deleted", items[id]);
+        dtask = items[id];
+        doneTask((dTask) => {
+            return [...dTask, dtask]
+        })
+
+        setItems((ptask) => {
+            return ptask.filter((arrE, index) => {
+                return index !== id;
             })
         })
+        
+
     }
 
     return (
@@ -40,28 +59,34 @@ const TodoApp = () => {
                     <div className="col w-input">
                         <p className="todoTitle" > Enter Your Task</p>
 
-                        <input type="text" className="myTask" value={inputList} placeholder="Enter task" onChange={showEvent} /><br />
+                        <input type="text" className="myTask" id="inputTask"  onKeyPress={handleKey} placeholder="Enter task" onChange={showEvent} /><br />
                         <button className="add" onClick={onAddTask} >Add</button>
                     </div>
 
-                    <div className="col w-task">
-                        <p className="todoTitle" > Your Task</p>
+                    <div className="col w-task progress">
+                        <p className="todoTitle pro" > Your Task</p>
                         <ul className="taskList">
 
                             {
-                                items.map((taskval,index) => {
+                                items.map((taskval, index) => {
                                     return <ListItem item={taskval}
-                                    key={index}
-                                    id={index}
-                                    onSelect={doneItem} />
+                                        key={index}
+                                        id={index}
+                                        onSelect={doneItem} />
                                 })
                             }
 
                         </ul>
                     </div>
                     <div className="col w-task">
-                        <p className="todoTitle" > Done</p>
-                        
+                        <p className="todoTitle do"> Done</p>
+                        <ul className="taskList">
+                            {
+                                dtask.map((taskval, index) => {
+                                    return <li> {taskval}</li>;
+                                })
+                            }
+                        </ul>
                     </div>
                 </div>
 
