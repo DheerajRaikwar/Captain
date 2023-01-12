@@ -1,0 +1,15 @@
+.expense_date{
+
+
+}
+
+.row{
+    padding: 4rem;  
+  }
+
+.card_body{
+    height: 300px;
+    width: fit-content;
+    background-color: blueviolet;
+
+}
